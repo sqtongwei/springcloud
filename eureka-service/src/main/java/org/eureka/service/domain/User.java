@@ -38,6 +38,11 @@ public class User {
 	public void setBirth(Date birth) {
 		this.birth = birth;
 	}
+
+	@Override
+	public String toString() {
+		return "User [name=" + name + ", age=" + age + ", birth=" + birth + "]";
+	}
 	
 	
 	
