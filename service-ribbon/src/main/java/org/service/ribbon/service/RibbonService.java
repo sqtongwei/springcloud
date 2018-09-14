@@ -9,6 +9,7 @@ import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+
 @Service
 public class RibbonService {
 
@@ -23,6 +24,7 @@ public class RibbonService {
 	 * 
 	 * @return
 	 */
+	//@HystrixCommand(fallbackMethod = "getUser2")
 	public String getUser(String name) {
 		Map<String, Object> params = new HashMap<>();
 		params.put("name", name);
@@ -35,6 +37,7 @@ public class RibbonService {
 	 * 
 	 * @return
 	 */
+
 	public String getUser2(String name) {
 		Map<String, Object> params = new HashMap<>();
 		params.put("name", name);
@@ -43,5 +46,9 @@ public class RibbonService {
 		String url = "http://" + serviceInstance.getHost() + ":" + serviceInstance.getPort() + "/getUser?name={name}";
 		return restTemplate.getForObject(url, String.class, params);
 
+	}
+	
+	public String getUserError() {
+		return "Sorry, getUser method is wrong.";
 	}
 }

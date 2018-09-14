@@ -1,11 +1,13 @@
 server:
-  port: 8764
+  servlet:
+    context-path: zuul
+  port: 8766
   tomcat:
     uri-encoding: UTF-8
     
 spring:
   application:
-    name: service-ribbion
+    name: service-zuul
   messages:
     encoding: UTF-8
   http:
@@ -20,3 +22,12 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
+      
+zuul:
+  routes:
+    api-a:
+      path: /api-a/**
+      service-id: service-ribbon
+    api-b:
+      path: /api-b/**
+      service-id: eureka-service

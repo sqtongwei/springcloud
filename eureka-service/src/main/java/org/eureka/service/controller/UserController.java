@@ -13,6 +13,13 @@ public class UserController {
 	@Value("${server.port}")
 	String port;
 	
+	@Value("${name}")
+	String name;
+	@GetMapping(value="/name")
+	public String hi() {
+		return "你好," + name;
+	}
+	
 	@GetMapping(value="/getUser")
 	public User getUser(@RequestParam(value = "name") String name) {
 		
@@ -21,7 +28,7 @@ public class UserController {
 		user.setAge(18);
 		user.setBirth(new Date());
 		
-		System.out.println("port:" + port);
+		System.out.println("eureka-service port:" + port);
 		return user;
 	}
 
